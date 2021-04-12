@@ -1,4 +1,4 @@
-package com.shinonon.pojo;
+package com.shinonon.bean;
 
 public class User {
     private String username;

@@ -1,7 +1,9 @@
 package com.shinonon.servlet;
 
-import com.shinonon.pojo.User;
-import com.shinonon.service.UserService;
+import com.shinonon.bean.User;
+import com.shinonon.dao.LoginDao;
+import com.shinonon.service.LoginService;
+import com.shinonon.service.RegisterService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,26 +11,59 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class RegisterServlet extends HttpServlet {
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.SQLException;
 
-    private UserService userService = new UserService();
+
+@WebServlet(name = "RegisterServlet", urlPatterns = "/register")
+public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        String reader = req.getParameter("reader");
-        User user = new User(username, password, reader);
-        String result = userService.addUser(user, req.getSession());
-        if ("注册成功".equals(result)) {
-            resp.sendRedirect(req.getContextPath()+"/index.jsp");
-        } else {
-            req.getRequestDispatcher("/register.jsp?message=" + result).forward(req, resp);
-        }
+        this.doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
+
+
+        User register = null;
+        RegisterService registerService = new RegisterService();
+        String result = "注册失败";
+        String userName, password, reader;
+        userName = req.getParameter("username");
+        password = req.getParameter("password");
+        reader = req.getParameter("reader");
+        register = new User(userName, password, reader);
+
+        LoginDao loginDao = new LoginDao();
+        User byName = loginDao.selectOne(register.getUsername());
+        if (byName != null) {
+            result = "用户已经存在";
+        } else {
+            try {
+                result = registerService.register(register);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        //注册成功：——>跳转至登录页面进行登录
+        //注册失败：——>注册页面提示：注册失败
+        if (result.equals("注册成功")) {
+            // 注册
+            resp.sendRedirect("/index.jsp?message=" + result);
+        } else {
+
+            req.getRequestDispatcher("/register.jsp?message=" + result).forward(req, resp);
+
+        }
     }
 }

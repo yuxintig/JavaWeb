@@ -1,6 +1,6 @@
 package com.shinonon.servlet;
 
-import com.shinonon.service.UserService;
+import com.shinonon.service.LoginService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private LoginService userService = new LoginService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

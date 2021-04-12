@@ -1,4 +1,4 @@
-<%@ page import="com.shinonon.pojo.User" %>
+<%@ page import="com.shinonon.bean.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
