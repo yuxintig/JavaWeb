@@ -1,98 +1,84 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Shinonon
+  Date: 3/23/2021
+  Time: 7:56 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>图书馆-用户注册</title>
-    <link rel="stylesheet" href="../../../../../../Desktop/作业/web/src/main/webapp/layui/css/layui.css"/>
-    <style>
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
-
-        .register {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .register-layout {
-            position: absolute;
-            width: 500px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 150, 136, 0.1);
-            padding: 100px 80px 80px 50px;
-        }
-
-        .logo {
-            font-size: 30px;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 10px;
+    <meta charset="UTF-8">
+    <title>注册账号</title>
+    <link rel="stylesheet" href="./layui/css/layui.css"/>
+    <style type="text/css">
+        .layui-layout-register {
+            width: 350px;
+            height: auto;
+            overflow: hidden;
+            margin: 10% auto 0 auto;
+            box-shadow: 2px 1px 10px 10px #eeeeee;
+            border-radius: 8px;
+            z-index: 10;
         }
     </style>
 </head>
+
 <body>
 
-<div class="register">
-    <div class="register-layout">
-        <form class="layui-form" action="/Library/register">
-            <div class="layui-form-item">
-                <label class="layui-form-label logo">
-                    用户注册
-                </label>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label"
-                       style="text-align: center">用户名
-                </label>
-                <div class="layui-input-block">
-                    <input type="text" name="username"
-                           placeholder="请输入"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label" style="text-align:
-                center">密码</label>
-                <div class="layui-input-block">
-                    <input type="text" name="password"
-                           placeholder="请输入"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label" style="text-align:
-                center">别名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="reader"
-                           placeholder="请输入"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
+<form class="layui-form layui-layout layui-layout-register" action="/register" method="post">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>注册账户</legend>
+    </fieldset>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户昵称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="reader" required lay-verify="required" placeholder="请输入你的昵称" autocomplete="off"
+                   class="layui-input">
+        </div>
     </div>
-</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户账号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="username" required lay-verify="required" placeholder="请输入账号" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户密码</label>
+        <div class="layui-input-inline">
+            <input type="password" name="password" required lay-verify="pwd" placeholder="请输入密码" autocomplete="off"
+                   class="layui-input" id="pass1">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">确认密码</label>
+        <div class="layui-input-inline">
+            <input type="password" name="repassword" required lay-verify="pwd" placeholder="请再次输入密码" autocomplete="off"
+                   class="layui-input"
+                   id="pass2">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">注册账号</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <a style="padding-left: 10px;color: #2badce" href="index.jsp">返回登录</a>
+    </div>
+</form>
 
+</body>
+<script type="text/javascript" src="./layui/layui.js"></script>
 <script>
     layui.use('form', function () {
         var form = layui.form;
-        //监听提交
-        form.on('submit(formDemo)', function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
+
     });
 </script>
 
-</body>
 </html>
