@@ -2,14 +2,7 @@ package com.shinonon.servlet;
 
 import com.shinonon.bean.User;
 import com.shinonon.dao.LoginDao;
-import com.shinonon.service.LoginService;
 import com.shinonon.service.RegisterService;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

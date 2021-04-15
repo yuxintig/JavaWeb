@@ -1,5 +1,6 @@
 package com.shinonon.dao;
 
+import com.shinonon.bean.Admin;
 import com.shinonon.bean.User;
 import com.shinonon.utils.JDBCUtil;
 

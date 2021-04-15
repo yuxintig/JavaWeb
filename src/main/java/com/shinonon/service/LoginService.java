@@ -1,10 +1,10 @@
 package com.shinonon.service;
 
+import com.shinonon.bean.Admin;
 import com.shinonon.bean.User;
 import com.shinonon.dao.LoginDao;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 
 public class LoginService {
 
