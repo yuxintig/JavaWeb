@@ -1,4 +1,4 @@
-<%@ page import="com.kirito666.JavaWebExample.bean.User" %><%--
+<%@ page import="com.shinonon.bean.User" %><%--
   Created by IntelliJ IDEA.
   User: Shinonon
   Date: 3/16/2021
