@@ -1,6 +1,6 @@
 <%@ page import="com.shinonon.bean.Admin" %><%--
   Created by IntelliJ IDEA.
-  User: Finger
+  User: Shinonon
   Date: 4/2/2021
   Time: 9:10 AM
   To change this template use File | Settings | File Templates.
