@@ -29,7 +29,7 @@
 
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" style="font-size: 25px">NIIU图书馆</div>
+        <div class="layui-logo" style="font-size: 25px">FISH图书馆</div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -54,7 +54,7 @@
 
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a href="javascript:;">图书服务</a>
@@ -117,23 +117,18 @@
     </div>
 
     <div class="layui-footer">
-        <!-- 底部固定区域 -->
         © 软件工程专业
     </div>
 </div>
 <script src="./layui/layui.js"></script>
 <script>
-    //JavaScript代码区域
     layui.use(['element'], function () {
         var element = layui.element;
         var $ = layui.$;
         $("[name=borrow]").click(function () {
-            //获取当前项的id和content
             var id = $(this).attr("id");
             var content = $(this).attr("content");
-            //判断标签是否存在
             if ($("li[lay-id=" + id + "]").length == 0) {
-                //添加新标签
                 element.tabAdd("tabTemp", {
                     title: $(this).attr("title"),
                     content:
@@ -142,7 +137,6 @@
                     id: id
                 });
             }
-            //切换标签
             element.tabChange("tabTemp", id);
         });
     });

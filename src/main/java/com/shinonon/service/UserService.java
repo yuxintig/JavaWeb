@@ -50,7 +50,7 @@ public class UserService {
         if (result > 0) {
             return "注册成功";
         } else {
-            return "用户已存在";
+            return "该用户已存在";
         }
     }
 

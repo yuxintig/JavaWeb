@@ -5,6 +5,9 @@ import com.shinonon.dao.BookDao;
 
 import java.util.List;
 
+/**
+ * @author Shinonon
+ */
 public class BookService {
     private BookDao bookDao = new BookDao();
 

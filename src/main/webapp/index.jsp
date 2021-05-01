@@ -22,7 +22,7 @@
 <%@include file="toast.jsp" %>
 <form class="layui-form layui-layout layui-layout-login" action="login" method="post">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>NIIU图书馆</legend>
+        <legend>FISH图书馆</legend>
     </fieldset>
     <div class="layui-form-item">
         <label class="layui-form-label">账号</label>
@@ -65,9 +65,6 @@
 <script>
     layui.use('form', function () {
         var form = layui.form;
-
-
-        //各种基于事件的操作，下面会有进一步介绍
     });
 </script>
 </body>

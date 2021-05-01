@@ -7,6 +7,9 @@ import com.shinonon.utils.JDBCUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Shinonon
+ */
 public class UserDao {
 
     public User selectOne(String username) {

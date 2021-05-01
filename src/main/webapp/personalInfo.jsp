@@ -79,14 +79,7 @@
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">头像</label>
-                                        <%--										<div class="layui-input-inline">--%>
-                                        <%--											<input name="avatar"--%>
-                                        <%--												   lay-verify="required"--%>
-                                        <%--												   id="LAY_avatarSrc"--%>
-                                        <%--												   placeholder="图片地址"--%>
-                                        <%--												   value=""--%>
-                                        <%--												   class="layui-input">--%>
-                                        <%--										</div>--%>
+
                                         <div class="layui-input-inline"
                                              style="width: auto;">
                                             <input type="file"
@@ -157,20 +150,14 @@
         var form = layui.form;
         var upload = layui.upload;
 
-        //执行实例
         var uploadInst = upload.render({
-            elem: '#LAY_avatarUpload' //绑定元素
-            , url: '/upload/' //上传接口
+            elem: '#LAY_avatarUpload'
+            , url: '/upload/'
             , done: function (res) {
-                //上传完毕回调
             }
             , error: function () {
-                //请求异常回调
             }
         });
-
-
-        //各种基于事件的操作，下面会有进一步介绍
     });
 </script>
 </body>
