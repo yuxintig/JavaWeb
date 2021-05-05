@@ -1,9 +1,8 @@
 package com.shinonon.servlet;
 
 import com.alibaba.fastjson.JSON;
-import com.shinonon.bean.Book;
-import com.shinonon.bean.User;
-import com.shinonon.service.BookService;
+import com.shinonon.bean.Message;
+import com.shinonon.service.MessageService;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
@@ -17,10 +16,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet(name = "SearchBooksServlet", urlPatterns = "/book/search")
-public class SearchBookServlet extends HttpServlet {
+/**
+ * @author Shinonon
+ */
+@WebServlet(name = "MessageBoardServlet", urlPatterns = "/messageBoard/all")
+public class MessageBoardServlet extends HttpServlet {
 
-    private BookService bookService = new BookService();
+    private final MessageService messageService = new MessageService();
 
     @Override
     protected void doGet(HttpServletRequest req,
@@ -29,22 +31,17 @@ public class SearchBookServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req,
-                          HttpServletResponse resp) throws ServletException, IOException {
-        String paramJson = IOUtils.toString(
-                req.getInputStream(), StandardCharsets.UTF_8);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        String paramJson = IOUtils.toString(req.getInputStream(), StandardCharsets.UTF_8);
         HashMap<String, Object> parseObject = JSON.parseObject(paramJson, HashMap.class);
-        String param = (String) parseObject.get("search");
         int pageNum = (int) parseObject.get("pageNum");
         int pageSize = (int) parseObject.get("pageSize");
-        List<Book> books = new ArrayList<>();
+        List<Message> messages = new ArrayList<>();
         int count = 0;
-        if (param == null) {
-            books = bookService.searchAllBooks(String.valueOf(((User) req.getSession().getAttribute("user")).getId()), pageNum, pageSize);
-        }
-
-        count = bookService.countNum();
-        req.getSession().setAttribute("books", books);
+        messages = messageService.queryAllMessage(pageNum, pageSize);
+        count = messageService.count();
+        req.getSession().setAttribute("messages", messages);
         resp.getWriter().print(count);
     }
 }
