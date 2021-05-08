@@ -95,7 +95,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;" name="borrow"
                        title="通知中心"
-                       content="./notification.jsp" id="8">通知中心</a>
+                       content="./announcement.jsp" id="8">通知中心</a>
                 </li>
             </ul>
         </div>

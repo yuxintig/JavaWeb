@@ -2,7 +2,6 @@ package com.shinonon.dao;
 
 import com.shinonon.bean.Book;
 import com.shinonon.utils.JDBCUtil;
-import org.intellij.lang.annotations.Language;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class BookDao {
     public List<Book> selectAll(int pageNum, int pageSize) {
-        @Language("MySQL") String sql = "select books.*, book_sort.name as sort " +
+        String sql = "select books.*, book_sort.name as sort " +
                 "from books, book_sort where " +
                 "books.sort_id=book_sort.id limit ?,?";
 
@@ -58,7 +57,7 @@ public class BookDao {
     }
 
     public boolean isExist(String username, String bookId) {
-        @Language("MySQL") String sql1 = "select EXISTS( SELECT 1 from borrow_books " +
+        String sql1 = "select EXISTS( SELECT 1 from borrow_books " +
                 "where book_id=? and card_id=?) as store";
         try (ResultSet rs =
                      JDBCUtil.getInstance().executeQueryRS(sql1,
@@ -87,4 +86,14 @@ public class BookDao {
                 });
         return result;
     }
+    public int borrowBook(int uid, String bookId){
+        String sql = "insert into borrow_books(book_id, card_id, " +
+                "borrow_date) values(?,?,?)";
+        return JDBCUtil.getInstance().executeUpdate(sql,
+                new Object[]{
+                        bookId, uid,
+                        new Date(System.currentTimeMillis())
+                });
+    }
+
 }
